@@ -74,19 +74,34 @@
     :else false))
 
 (defn my-map [f seq-1 seq-2]
-  [:-])
+  (if (or (empty? seq-1) (empty? seq-2))
+     '()
+    (cons (f (first seq-1) (first seq-2))
+          (my-map f (rest seq-1) (rest seq-2)))))
 
 (defn power [n k]
-  :-)
+  (if (zero? k)
+    1
+    (* n (power n (dec k)))))
 
 (defn fib [n]
-  :-)
+  (cond
+    (zero? n) 0
+    (= 1 n) 1
+    :else (+ (fib (- n 1))
+             (fib (- n 2)))))
 
 (defn my-repeat [how-many-times what-to-repeat]
-  [:-])
+  (if (<= how-many-times 0)
+    '()
+    (cons what-to-repeat
+          (my-repeat (dec how-many-times) what-to-repeat))))
 
 (defn my-range [up-to]
-  [:-])
+  (let [n (dec up-to)] 
+    (if (zero? up-to)
+    '()
+    (cons n (my-range n)))))
 
 (defn tails [a-seq]
   [:-])
